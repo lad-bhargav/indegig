@@ -11,6 +11,8 @@ app.use(express.urlencoded({extended:true}));
 config();
 connectDb();
 
+app.use("/products",)
+
 // Handle unhandled promise rejections (e.g., database connection errors)
 process.on("unhandledRejection", (err) => {
   console.error("Unhandled Rejection:", err);

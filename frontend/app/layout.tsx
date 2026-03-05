@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,12 +26,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>  
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        >
+      <SidebarProvider>
+        <AppSidebar />
+        <main className="flex flex-col w-full">
+        <header className="flex items-center h-12 px-4 border-b">
+        <SidebarTrigger className="cursor-pointer"/>
+        </header>
+        <div className="p-4">
         {children}
-      </body>
+      </div>
+      </main>
+      </SidebarProvider>
+        </body>
     </html>
+    </ClerkProvider>
   );
 }
