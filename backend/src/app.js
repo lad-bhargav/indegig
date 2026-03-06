@@ -1,17 +1,17 @@
+import 'dotenv/config';
 import express from "express";
 import cors from "cors";
-import {config} from "dotenv"
 import {connectDb,disConnectDb} from "./config/db.js";
+import router from "./routes/products.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-config();
 connectDb();
 
-app.use("/products",)
+app.use("/products",router);
 
 // Handle unhandled promise rejections (e.g., database connection errors)
 process.on("unhandledRejection", (err) => {
@@ -37,10 +37,6 @@ process.on("SIGTERM", async () => {
     process.exit(0);
   });
 });
-
-app.get("/",(req,res)=>{
-    res.send("Hello World");
-})
 
 app.listen(8080,()=>{
     console.log("Server is running on port 8080");

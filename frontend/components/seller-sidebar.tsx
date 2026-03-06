@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Home, History, UserCircle, CreditCard, LogIn, UserPlus } from "lucide-react"
+import { FolderKanban, MessageSquare , DollarSign , LogIn, UserPlus } from "lucide-react"
 import {
   SignInButton,
   SignUpButton,
@@ -20,13 +20,9 @@ import {
 } from '@clerk/nextjs'
 
 const menuItems = [
-  { title: "Home", icon: Home, url: "/" },
-  { title: "History", icon: History, url: "/history" },
-  { title: "Payments", icon: CreditCard, url: "/payments" },
-]
-
-const authMenuItems = [
-  { title: "Profile", icon: UserCircle, url: "/profile" },
+  { title: "My Projects", icon: FolderKanban, url: "/seller/myprojects" },
+  { title: "Messages", icon: MessageSquare, url: "/seller/messages" },
+  { title: "Earnings", icon: DollarSign, url: "/seller/earnings" },
 ]
 
 export function AppSidebar() {
@@ -53,20 +49,6 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-
-              {/* Profile — only shown when signed in */}
-              <SignedIn>
-                {authMenuItems.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
-                      <a href={item.url}>
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SignedIn>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -74,7 +56,6 @@ export function AppSidebar() {
 
       <SidebarFooter>
         <div className="px-3 py-3 border-t">
-          {/* Signed out: show Sign In + Sign Up buttons */}
           <SignedOut>
             <div className="flex flex-col gap-2">
               <SignInButton mode="modal">
@@ -92,7 +73,6 @@ export function AppSidebar() {
             </div>
           </SignedOut>
 
-          {/* Signed in: show Clerk UserButton with name */}
           <SignedIn>
             <div className="flex items-center gap-3 px-1">
               <UserButton
