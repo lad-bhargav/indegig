@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Seller" ADD COLUMN     "TotalEarnings" DOUBLE PRECISION NOT NULL DEFAULT 0;

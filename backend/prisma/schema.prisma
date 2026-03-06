@@ -31,6 +31,7 @@ model Seller {
   id       String     @id @default(cuid())
   user     User       @relation(fields: [sellerId], references: [clerkId])
   sellerId String     @unique
+  TotalEarnings Float @default(0)
   products Products[]
 }
 
