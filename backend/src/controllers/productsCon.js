@@ -53,4 +53,30 @@ const editProduct= async (req, res) => {
     }
 }
 
-export { getAllProducts,getProductById,editProduct };
+const createProduct = async (req, res) => {
+    try {
+        const {title,description,price,sellerId,img,deliveringTime} = req.body;
+        
+        if(!title || !description || !price || !sellerId || !img || !deliveringTime){
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        const data = await prisma.products.create({
+            data: {
+                title,
+                description,
+                price,
+                sellerId,
+                img,
+                deliveringTime
+            }
+        });
+        
+        return res.status(201).json(data);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+}
+
+export { getAllProducts,getProductById,editProduct,createProduct };

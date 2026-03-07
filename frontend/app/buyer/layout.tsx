@@ -15,7 +15,7 @@ export default function AppLayout({
         <AppSidebar />
         <main className="flex flex-col w-full">
         <header className="flex items-center h-12 px-4 border-b">
-        <SidebarTrigger className="cursor-pointer"/>
+        <SidebarTrigger className="cursor-pointer fixed"/>
         </header>
         <div className="p-4">
         {children}

@@ -29,7 +29,7 @@ const Home = () => {
   }
 
   return (
-    <div className='min-h-screen max-w-screen'>
+    <div className='min-h-screen max-w-screen flex flex-row flex-wrap items-start'>
       {
         allProducts.map((product)=>(
             <ProductCard
