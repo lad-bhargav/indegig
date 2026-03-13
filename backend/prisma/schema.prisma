@@ -29,7 +29,7 @@ model User {
 
 model Seller {
   id       String     @id @default(cuid())
-  user     User       @relation(fields: [sellerId], references: [clerkId])
+  user     User       @relation(fields: [sellerId], references: [clerkId],onDelete: Cascade)
   sellerId String     @unique
   TotalEarnings Float @default(0)
   products Products[]
@@ -37,15 +37,15 @@ model Seller {
 
 model Buyer {
   id       String     @id @default(cuid())
-  user     User       @relation(fields: [buyerId], references: [clerkId])
+  user     User       @relation(fields: [buyerId], references: [clerkId],onDelete: Cascade)
   buyerId  String     @unique
   products Products[]
 }
 
 model Products {
   id              String    @id @default(cuid())
-  seller          Seller    @relation(fields: [sellerId], references: [id])
-  buyer           Buyer?     @relation(fields: [buyerId], references: [id])
+  seller          Seller    @relation(fields: [sellerId], references: [sellerId],onDelete: Cascade)
+  buyer           Buyer?     @relation(fields: [buyerId], references: [buyerId],onDelete: SetNull)
   sellerId        String
   buyerId         String?
   title           String

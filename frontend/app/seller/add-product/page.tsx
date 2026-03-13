@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useCurrentUser } from "@/hooks/useCurrUser"
 import { Product } from "@/types/product"
 import axios from "axios"
 import { useRouter } from "next/navigation"
@@ -26,13 +27,14 @@ const CreateProduct = () => {
   } = useForm<Product>();
 
   const router = useRouter();
+  const {clerkId} = useCurrentUser();
 
   const addProduct = async(data:Product) => {
     try {
       
       const res = await axios.post("http://localhost:8080/products/create",{
           ...data,
-          sellerId: "1"
+          sellerId: clerkId
       })
       console.log(data);
       

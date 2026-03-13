@@ -53,6 +53,20 @@ const editProduct= async (req, res) => {
     }
 }
 
+const deleteProduct = async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const deltProduct = await prisma.products.delete({
+            where:{id}
+        })
+        return res.json(deltProduct);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+}
+
 const createProduct = async (req, res) => {
     try {
         const {title,description,price,sellerId,img,deliveringTime} = req.body;
@@ -79,4 +93,19 @@ const createProduct = async (req, res) => {
     }
 }
 
-export { getAllProducts,getProductById,editProduct,createProduct };
+const getProductsBySellerId = async (req, res) => {
+    try {
+        const { sellerId } = req.params;
+        const products = await prisma.products.findMany({
+            where: {
+                sellerId: sellerId
+            }
+        });
+        return res.json(products);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Internal Server Error" });
+    }
+}
+
+export { getAllProducts,getProductById,editProduct,createProduct,getProductsBySellerId,deleteProduct };
