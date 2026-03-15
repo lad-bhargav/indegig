@@ -6,4 +6,8 @@ export type Product = {
     price: number;
     img: string;
     deliveringTime: number;
+    revisions: number;
+    sellerUsername: string;
+    sellerEmail:string;
+    sellerProfileImg:string
 }

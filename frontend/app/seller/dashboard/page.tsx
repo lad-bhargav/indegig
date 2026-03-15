@@ -1,4 +1,4 @@
-import PocketCard from '@/components/pocketCard'
+import PocketCard from '@/components/pocketCard-seller'
 import { Clock, DollarSign, ShoppingCart } from "lucide-react"
 
 const SellerDashboard = () => {

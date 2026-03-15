@@ -18,43 +18,56 @@ enum Role {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  clerkId   String   @unique
-  role      Role
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  seller    Seller?
-  buyer     Buyer?
+  id         String   @id @default(cuid())
+  clerkId    String   @unique
+  role       Role
+  email      String   @unique
+  username   String?
+  profileImg String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  seller     Seller?
+  buyer      Buyer?
 }
 
 model Seller {
-  id       String     @id @default(cuid())
-  user     User       @relation(fields: [sellerId], references: [clerkId],onDelete: Cascade)
-  sellerId String     @unique
-  TotalEarnings Float @default(0)
-  products Products[]
+  id            String     @id @default(cuid())
+  user          User       @relation(fields: [sellerId], references: [clerkId], onDelete: Cascade)
+  sellerId      String     @unique
+  email         String     @unique
+  username      String?
+  profileImg    String?
+  TotalEarnings Float      @default(0)
+  products      Products[]
 }
 
 model Buyer {
-  id       String     @id @default(cuid())
-  user     User       @relation(fields: [buyerId], references: [clerkId],onDelete: Cascade)
-  buyerId  String     @unique
-  products Products[]
+  id         String     @id @default(cuid())
+  user       User       @relation(fields: [buyerId], references: [clerkId], onDelete: Cascade)
+  buyerId    String     @unique
+  email      String     @unique
+  username   String?
+  profileImg String?
+  products   Products[]
 }
 
 model Products {
-  id              String    @id @default(cuid())
-  seller          Seller    @relation(fields: [sellerId], references: [sellerId],onDelete: Cascade)
-  buyer           Buyer?     @relation(fields: [buyerId], references: [buyerId],onDelete: SetNull)
-  sellerId        String
-  buyerId         String?
-  title           String
-  description     String
-  img             String
-  price           Float
-  deliveringTime  Int
-  isDelivered     Boolean   @default(false)
-  willdeliveredIn DateTime?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id               String    @id @default(cuid())
+  seller           Seller    @relation(fields: [sellerId], references: [sellerId], onDelete: Cascade)
+  buyer            Buyer?    @relation(fields: [buyerId], references: [buyerId], onDelete: SetNull)
+  sellerId         String
+  sellerEmail      String
+  sellerUsername   String?
+  sellerProfileImg String?
+  buyerId          String?
+  title            String
+  description      String
+  img              String
+  price            Float
+  revisions        Int       @default(0)
+  deliveringTime   Int
+  isDelivered      Boolean   @default(false)
+  willdeliveredIn  DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 }

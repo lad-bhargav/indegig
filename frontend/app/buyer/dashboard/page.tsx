@@ -1,5 +1,5 @@
 'use client'
-import ProductCard from '@/components/ProductCard';
+import ProductCard from '@/components/ProductCard-buyer';
 import { Product } from '@/types/product';
 import axios from 'axios';
 import { useEffect, useState } from 'react'
@@ -41,6 +41,10 @@ const Home = () => {
               price={product.price}
               deliveringTime={product.deliveringTime}
               img={product.img}
+              revisions={product.revisions}
+              sellerEmail={product.sellerEmail}
+              sellerProfileImg={product.sellerProfileImg}
+              sellerUsername={product.sellerUsername}
             />
         ))
       }

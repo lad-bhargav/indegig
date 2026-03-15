@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Home, History, ShoppingCart, LogIn, UserPlus } from "lucide-react"
+import { Home, History, ShoppingCart, LogIn, UserPlus, MessageSquare } from "lucide-react"
 import {
   SignInButton,
   SignUpButton,
@@ -20,9 +20,10 @@ import {
 } from '@clerk/nextjs'
 
 const menuItems = [
-  { title: "Home", icon: Home, url: "/buyer/dashboard" },
+  { title: "Dashboard", icon: Home, url: "/buyer/dashboard" },
+  { title: "Messages", icon: MessageSquare, url: "/buyer/messages" },
   { title: "History", icon: History, url: "/buyer/history" },
-  { title: "orders", icon: ShoppingCart, url: "/buyer/orders" },
+  { title: "Orders", icon: ShoppingCart, url: "/buyer/orders" },
 ]
 
 export function AppSidebar() {

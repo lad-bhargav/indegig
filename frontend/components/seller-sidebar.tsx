@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { FolderKanban, MessageSquare , DollarSign , LogIn, UserPlus, PlusSquare } from "lucide-react"
+import { FolderKanban, MessageSquare , DollarSign , LogIn, UserPlus, PlusSquare, Home } from "lucide-react"
 import {
   SignInButton,
   SignUpButton,
@@ -20,6 +20,7 @@ import {
 } from '@clerk/nextjs'
 
 const menuItems = [
+  { title: "Dashboard", icon: Home, url: "/seller/dashboard" },
   { title: "My Projects", icon: FolderKanban, url: "/seller/myprojects" },
   { title: "Messages", icon: MessageSquare, url: "/seller/messages" },
   { title: "Earnings", icon: DollarSign, url: "/seller/earnings" },

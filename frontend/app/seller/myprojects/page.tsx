@@ -1,5 +1,5 @@
 'use client'
-import ProductCard from '@/components/ProductCard';
+import ProductCardSeller from '@/components/ProductCard-seller';
 import { useCurrentUser } from '@/hooks/useCurrUser';
 import { Product } from '@/types/product';
 import axios from 'axios';
@@ -33,8 +33,8 @@ const page = () => {
     <div className='min-h-screen max-w-screen flex flex-row flex-wrap items-start'>
       {
         allProducts.map((product)=>(
-            <ProductCard
-              key={product.id} 
+            <ProductCardSeller
+              key={product.id}
               sellerId={product.sellerId}
               id={product.id}
               title={product.title}
@@ -42,6 +42,10 @@ const page = () => {
               price={product.price}
               deliveringTime={product.deliveringTime}
               img={product.img}
+              revisions={product.revisions}
+              sellerUsername={product.sellerUsername}
+              sellerEmail={product.sellerEmail}
+              sellerProfileImg={product.sellerProfileImg}
             />
         ))
       }

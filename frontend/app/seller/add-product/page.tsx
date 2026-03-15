@@ -27,14 +27,17 @@ const CreateProduct = () => {
   } = useForm<Product>();
 
   const router = useRouter();
-  const {clerkId} = useCurrentUser();
+  const {clerkId,fullName,email,imageUrl} = useCurrentUser();
 
   const addProduct = async(data:Product) => {
-    try {
+    try { 
       
       const res = await axios.post("http://localhost:8080/products/create",{
           ...data,
-          sellerId: clerkId
+          sellerId: clerkId,
+          sellerEmail:email,
+          sellerProfileImg:imageUrl,
+          sellerUsername:fullName
       })
       console.log(data);
       
@@ -125,6 +128,23 @@ const CreateProduct = () => {
                 })}
               />
               {errors.img && <span>This field is required</span>}
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="revisions">Revisions</Label>
+              <Input
+                id="revisions"
+                type="number"
+                placeholder="revisions allowed for buyer"
+                {...register("revisions", {
+                  required: "revisions is required",
+                  valueAsNumber: true,
+                  min: {
+                    value: 0,
+                    message: "Revisions must be a positive number",
+                  },
+                })}
+              />
+              {errors.revisions && <span>This field is required</span>}
             </div>
           </div>
           <CardFooter className="flex-col gap-2 mt-6">

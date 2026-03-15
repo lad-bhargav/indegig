@@ -69,9 +69,9 @@ const deleteProduct = async (req, res) => {
 
 const createProduct = async (req, res) => {
     try {
-        const {title,description,price,sellerId,img,deliveringTime} = req.body;
+        const {title,description,price,sellerId,img,deliveringTime,revisions,sellerUsername,sellerProfileImg,sellerEmail} = req.body;
         
-        if(!title || !description || !price || !sellerId || !img || !deliveringTime){
+        if(!title || !description || !price || !sellerId || !img || !deliveringTime || !revisions || !sellerEmail){
             return res.status(400).json({ message: "All fields are required" });
         }
 
@@ -82,7 +82,11 @@ const createProduct = async (req, res) => {
                 price,
                 sellerId,
                 img,
-                deliveringTime
+                deliveringTime,
+                revisions,
+                sellerEmail,
+                sellerProfileImg,
+                sellerUsername
             }
         });
         
