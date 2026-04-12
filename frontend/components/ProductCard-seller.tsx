@@ -36,7 +36,7 @@ const ProductCardSeller = ({ id, title, description, price, deliveringTime, img,
   }
 
   return (
-    <Card className="relative overflow-hidden mx-auto w-full max-w-sm pt-0">
+    <Card className="relative overflow-hidden  w-full max-w-sm pt-0">
       <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
 
       {/* 3-dot menu on image */}

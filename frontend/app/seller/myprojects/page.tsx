@@ -30,7 +30,7 @@ const page = () => {
   }
 
   return (
-    <div className='min-h-screen max-w-screen flex flex-row flex-wrap items-start'>
+    <div className='min-h-screen max-w-screen flex flex-wrap items-start gap-x-30 gap-y-10'>
       {
         allProducts.map((product)=>(
             <ProductCardSeller
